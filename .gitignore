@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+build/*
+!build/.gitkeep
+/CMakeFiles/
+/CMakeCache.txt
+/Makefile
+/cmake_install.cmake
+

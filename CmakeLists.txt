@@ -1,0 +1,46 @@
+cmake_minimum_required(VERSION 3.14)
+project(smallberg)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# src files
+add_library(smallberg
+    src/Table.cpp
+    src/Schema.cpp
+    src/Column.cpp
+)
+target_include_directories(smallberg PUBLIC include)
+
+# ---- Catch2 via FetchContent ----
+include(FetchContent)
+
+FetchContent_Declare(
+  Catch2
+  GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+  GIT_TAG v3.4.0
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+# ---- Tests ----
+enable_testing()
+
+add_executable(tests
+    tests/test_table.cpp
+    tests/test_schema.cpp
+    tests/test_column.cpp
+)
+
+target_link_libraries(tests
+    PRIVATE
+        smallberg
+        Catch2::Catch2WithMain
+)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(tests)
+
+add_executable(app src/main.cpp)
+target_link_libraries(app PRIVATE smallberg)
