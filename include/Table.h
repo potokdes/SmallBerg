@@ -3,10 +3,13 @@
 #include <string>
 #include <vector>
 #include <Schema.h>
-/**
- * This will be the most important domain class and entry point to the whole domain
- * model
- */
+/// @brief Represents a logical table abstraction.
+/// 
+/// The Table class is the primary entry point to interact with data. It supports
+/// row-level operations, schema association, and future metadata functions such as
+/// snapshotting or partitioning.
+/// 
+/// Internally, it holds a reference to a Schema object and a collection of rows.
 class Table
 {
 public:
@@ -15,7 +18,6 @@ public:
     // void save();
     std::string get_name();
     void add_schema(const Schema &table_schema);
-    std::vector<std::string> get_last_row();
     Schema get_schema() const;
 
 private:

@@ -4,6 +4,11 @@
 #include <memory>
 #include "Column.h"
 
+/// @brief Describes the structure of a table.
+/// 
+/// Schema contains the definition of all columns in a table. Each schema
+/// has a unique identifier and stores its columns by ID. It is responsible
+/// for validating column uniqueness and enabling structural introspection.
 class Schema
 {
 public:
