@@ -2,6 +2,7 @@
 
 #include <string>
 #include "Column.h"
+#include "data_type.h"
 
 /// @brief Represents a single column definition within a schema.
 /// 
@@ -11,12 +12,12 @@
 class Column
 {
 public:
-    Column(const std::string &name, const std::string &type);
+    Column(const std::string &name, const DataType &type);
     std::string get_name();
-    std::string get_type();
+    DataType get_type();
     std::string to_string() const;
 
 private:
     std::string name;
-    std::string type;
+    DataType type;
 };

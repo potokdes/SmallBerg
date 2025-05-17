@@ -6,18 +6,18 @@
 TEST_CASE("Should allow adding and retriving columns")
 {
     auto s = Schema(1);
-    auto c = Column("col1", "int");
+    auto c = Column("col1", DataType::INTEGER);
     s.add_column(c);
     auto col = s.get_column("col1");
     REQUIRE(col.get_name() == "col1");
-    REQUIRE(col.get_type() == "int");
+    REQUIRE(col.get_type() == DataType::INTEGER);
 
-    auto c2 = Column("col2", "int");
+    auto c2 = Column("col2", DataType::INTEGER);
     s.add_column(c2);
     auto col2 = s.get_column("col2");
 
     REQUIRE(col2.get_name() == "col2");
-    REQUIRE(col2.get_type() == "int");
+    REQUIRE(col2.get_type() == DataType::INTEGER);
 
 }
 
@@ -32,8 +32,8 @@ TEST_CASE("Should return correct json representation of object")
 {
     auto stream = std::ostringstream();
     auto s = Schema(1);
-    auto c1 = Column("col1", "int");
-    auto c2 = Column("col2", "int");
+    auto c1 = Column("col1", DataType::INTEGER);
+    auto c2 = Column("col2", DataType::INTEGER);
     s.add_column(c1);
     s.add_column(c2);
     stream << "{\n";
@@ -42,11 +42,11 @@ TEST_CASE("Should return correct json representation of object")
     stream << "[\n";
     stream << "{\n";
     stream << "\"name\": \"col1\",\n";
-    stream << "\"type\": \"int\"\n";
+    stream << "\"type\": \"INTEGER\"\n";
     stream << "},\n";
     stream << "{\n";
     stream << "\"name\": \"col2\",\n";
-    stream << "\"type\": \"int\"\n";
+    stream << "\"type\": \"INTEGER\"\n";
     stream << "}\n";
     stream << "]\n";
     stream << "}\n";
